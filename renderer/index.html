@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline';" />
+    <title>RA Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="chrome">
+      <div class="chrome-brand">
+        <span class="dot" id="statusDot"></span>
+        <span class="brand-name">RA TRACKER</span>
+        <span class="brand-sub" id="statusText">NOT WATCHING</span>
+      </div>
+      <button class="chrome-min" id="minBtn" title="View this later — minimize to tray">
+        Minimize to tray
+      </button>
+    </div>
+
+    <main>
+      <section class="panel">
+        <h2>Setup</h2>
+        <p class="hint">
+          Grab a tracker key from the Admin Panel on your tracker site (Tracker Keys tab), paste it below,
+          then hit Save &amp; Connect. Once connected this window can be minimized — RA Tracker keeps
+          watching from the tray and uploads finished scrims on its own.
+        </p>
+
+        <label>Tracker site URL</label>
+        <input id="apiUrl" type="text" placeholder="https://tracker2-ten.vercel.app" />
+
+        <label>Tracker key</label>
+        <input id="trackerKey" type="password" placeholder="Paste your tracker key" />
+
+        <label>Your Riot ID <span class="optional">(optional — Name#Tag)</span></label>
+        <input id="riotId" type="text" placeholder="Name#Tag" />
+
+        <label class="row">
+          <input id="autostart" type="checkbox" />
+          <span>Start RA Tracker automatically when I sign in to Windows</span>
+        </label>
+
+        <div class="btn-row">
+          <button id="saveBtn" class="btn primary">Save &amp; Connect</button>
+          <button id="testBtn" class="btn ghost">Test connection</button>
+        </div>
+        <div id="testResult" class="test-result"></div>
+      </section>
+
+      <section class="panel">
+        <h2>Watching</h2>
+        <p class="hint">
+          When watching, RA Tracker reads Valorant's log file the same way the old .bat script did, but
+          automatically — no need to launch anything after a scrim. It notices a match has ended and
+          uploads it a few seconds later.
+        </p>
+        <div class="btn-row">
+          <button id="startBtn" class="btn primary">Start watching</button>
+          <button id="pauseBtn" class="btn ghost" disabled>Pause</button>
+          <button id="stopBtn" class="btn ghost danger" disabled>Stop</button>
+        </div>
+        <p class="hint small">
+          <strong>Pause</strong> stops picking up new matches but lets anything already uploading finish.
+          <strong>Stop</strong> halts the watcher immediately.
+        </p>
+      </section>
+
+      <section class="panel grow">
+        <h2>Activity</h2>
+        <div id="log" class="log"></div>
+      </section>
+    </main>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>

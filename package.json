@@ -1,0 +1,39 @@
+{
+  "name": "ra-tracker",
+  "version": "1.0.0",
+  "description": "Watches for finished Valorant scrims and auto-uploads them to the RA scrim tracker.",
+  "main": "main.js",
+  "author": "RA",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "dist:dir": "electron-builder --dir"
+  },
+  "dependencies": {
+    "electron-store": "^8.2.0"
+  },
+  "devDependencies": {
+    "electron": "^31.3.1",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.ra.tracker",
+    "productName": "RA Tracker",
+    "files": [
+      "**/*",
+      "!README.md"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "RA Tracker"
+    }
+  }
+}
