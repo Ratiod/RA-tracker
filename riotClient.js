@@ -113,6 +113,7 @@ class RiotClient {
   stop() {
     this.running = false;
     this.paused = false;
+    this.seenMatches.clear();
     if (this.timer) clearTimeout(this.timer);
     this.onStatus("idle");
     this.log("Stopped watching.");
@@ -125,6 +126,7 @@ class RiotClient {
     } catch (err) {
       this.log(`Watcher error: ${err.message}`);
     }
+    if (!this.running) return;
     this.timer = setTimeout(() => this._loop(), POLL_MS);
   }
 
