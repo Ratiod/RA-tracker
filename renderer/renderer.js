@@ -68,8 +68,7 @@ async function saveConfig() {
 
 els.saveBtn.addEventListener("click", async () => {
   await saveConfig();
-  await window.api.startWatching();
-  addLog("Settings saved. Starting watcher\u2026");
+  addLog("Settings saved.");
 });
 
 els.startBtn.addEventListener("click", async () => {
