@@ -131,8 +131,6 @@ app.whenReady().then(() => {
     },
   });
 
-  // If it's already configured from a previous run, start watching immediately.
-  if (store.get("trackerKey")) riotClient.start();
 });
 
 app.on("window-all-closed", (e) => {
