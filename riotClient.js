@@ -211,6 +211,7 @@ class RiotClient {
         apiUrl: cfg.apiUrl,
         trackerKey: cfg.trackerKey,
         riotId: cfg.riotId,
+        puuid: auth.puuid,
         matchData,
       });
       this.onUpload(result);
@@ -357,11 +358,11 @@ class RiotClient {
     }
   }
 
-  async _uploadToTracker({ apiUrl, trackerKey, riotId, matchData }) {
+  async _uploadToTracker({ apiUrl, trackerKey, riotId, puuid, matchData }) {
     const resp = await httpRequest(`${apiUrl.replace(/\/$/, "")}/api/tracker/upload`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-tracker-key": trackerKey },
-      body: JSON.stringify({ matchData, myRiotId: riotId }),
+      body: JSON.stringify({ matchData, myRiotId: riotId, myPuuid: puuid }),
     });
     let json = {};
     try {
